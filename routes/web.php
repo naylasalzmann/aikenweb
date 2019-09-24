@@ -11,6 +11,13 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-}); //holi dos tres uuih jnfjsbjjsj
+Route::get('/', 'PagesController@home');
+
+Route::get('/salidas', 'PagesController@salidas');
+
+// Route::get('/pdc', 'PagesController@pdc');
+
+Route::view('/pdc', 'pdc');
+
+
+Route::view('/pdc/localidades', 'localidades'); // crear un controller
