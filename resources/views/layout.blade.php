@@ -19,12 +19,31 @@
     <title>@yield('title', 'Aiken')</title>
 </head>
 <body>
-    <a href="/">Home</a>		
-    <h2>aiken layout</h2>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Aiken</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="#">Equipo</a></li>
+        <li><a href="#">Coorporativo</a></li>
+        <li><a href="#">Educativo</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="sass.html">Equipo</a></li>
+    <li><a href="badges.html">Coorporativo</a></li>
+    <li><a href="collapsible.html">Educativo</a></li>
+    <li><a href="mobile.html">Contacto</a></li>
+  </ul>
     @yield('content')
 
      <!--JavaScript at end of body for optimized loading-->
-     <script type="text/javascript" src="{{asset('js/materialize.min.js')}}"></script>
+     <script type="text/javascript" src="{{asset('js/materialize.js')}}"></script>
+     <script src="{{ asset('js/navbar.js')}}"></script>
 </body>
 </html>
 

@@ -13,11 +13,18 @@
 
 Route::get('/', 'PagesController@home');
 
-Route::get('/salidas', 'PagesController@salidas');
-
-// Route::get('/pdc', 'PagesController@pdc');
-
 Route::view('/pdc', 'pdc');
 
+Route::get('/pdc/localidades', 'LocalidadesController@index');
 
-Route::view('/pdc/localidades', 'localidades'); // crear un controller
+Route::get('/pdc/localidades/create', 'LocalidadesController@create');
+
+Route::get('/pdc/salidas', 'SalidasController@index'); //todo: usar resource
+
+Route::view('/salidas', 'ficha'); // todo: usar controller @show
+
+Route::get('/pdc/guias', 'GuiasController@index');
+
+Route::get('/pdc/consultas', 'ConsultasController@index');
+
+Route::get('/pdc/reservas', 'ReservasController@index');

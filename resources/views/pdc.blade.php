@@ -11,11 +11,9 @@
 			 
 	  		</div>
 	      	<div class="col s9">
-	    		<h1>Este es tu pdc</h1>
+	    		<h1>Este es tu pdc (dashboard)</h1>
 	  		</div>
 
-	 
-	 
 	    </div>
 	</div>
 

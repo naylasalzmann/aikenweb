@@ -1,6 +1,6 @@
 @extends('layoutPdc')
 
-@section('title', 'Salidas')
+@section('title', 'Reservas')
 
 @section('content')
 
@@ -13,7 +13,7 @@
 			 
 	  		</div>
 	      	<div class="col s9">
-	    		<h1>Estas son tus salidas</h1>
+	    		<h1>Estas son tus reservas</h1>
 	  		</div>
 
 	 
@@ -24,4 +24,3 @@
   <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
 
 @endsection
-    
