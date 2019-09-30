@@ -41,9 +41,16 @@
   </ul>
     @yield('content')
 
-     <!--JavaScript at end of body for optimized loading-->
-     <script type="text/javascript" src="{{asset('js/materialize.js')}}"></script>
-     <script src="{{ asset('js/navbar.js')}}"></script>
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="{{asset('js/materialize.js')}}"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.sidenav');
+          var instances = M.Sidenav.init(elems, {});
+        });
+    </script>
+
+
 </body>
 </html>
 

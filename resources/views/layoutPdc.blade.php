@@ -47,7 +47,12 @@
 
      <!--JavaScript at end of body for optimized loading-->
       <script src="{{ asset('js/materialize.js') }}"></script>
-      <script src="{{ asset('js/sidebar.js') }}"></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var elems = document.querySelectorAll('.dropdown-trigger');
+          var instances = M.Dropdown.init(elems, {});
+        });
+      </script>
       @yield('scripts')
 </body>
 </html>
