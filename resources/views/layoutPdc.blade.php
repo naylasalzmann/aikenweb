@@ -18,6 +18,7 @@
     <title>@yield('title', 'Panel de control')</title>
 </head>
 <body>
+      @yield('content')
 
        <ul id="slide-out" class="sidenav sidenav-fixed">
           <li><div class="user-view">
@@ -38,12 +39,13 @@
           <li><a class="waves-effect" href="/pdc/localidades">Localidades y zonas</a></li>
           <li><a class="dropdown-trigger" href="/pdc/localidades" data-target="dropdown1">Otros<i class="material-icons right">arrow_drop_down</i></a></li>
           <ul id='dropdown1' class='dropdown-content'>
-            <li><a href="#!">Tipos de salida</a></li>
+            <li><a href="/pdc/tiposSalida">Tipos de salida</a></li>
             <li><a href="#!">Títulos</a></li>
+            <li><a href="/pdc/condiciones">Condiciones para reservar</a></li>
           </ul>
         </ul>
-      @yield('sidenav')
-      @yield('content')
+      <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+     
 
      <!--JavaScript at end of body for optimized loading-->
       <script src="{{ asset('js/materialize.js') }}"></script>
