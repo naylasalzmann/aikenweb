@@ -15,9 +15,9 @@
 	      	<div class="col s9">
 	    		<h1>Estas son tus localidades</h1>
 
-	    		 @foreach ($localidades as $localidad)
-	    		 	<li>{{ $localidad->nombre }}</li>
-	    		 @endforeach
+	    		 	@foreach ($localidades as $localidad)
+	    		 		<li>{{ $localidad->nombre }}</li>
+	    			 @endforeach	
 
 	    		<div class="row">
 				    <form class="col s12">
@@ -44,19 +44,30 @@
 
 @section('scripts')
 <script type="text/javascript">
-	var options = {
-        "Apple": null,
+	const paises = {
+        "Argentina": null,
         "Microsoft": null,
         "Google": 'https://placehold.it/250x250'
       };
       
 	document.addEventListener('DOMContentLoaded', function() {
-    var elems = document.getElementById('pais');
-    var instances = M.Autocomplete.init(elems, {data :  options});
+    	var elems = document.getElementById('pais');
+    	var instances = M.Autocomplete.init(elems, {data :  paises});
 
-  });
+  	});
 
 
-	//var instance = M.Autocomplete.getInstance(elem);	
+	const provincias = {
+        "Buenos Aires": null,
+        "Cordoba": null,
+        "Google": 'https://placehold.it/250x250'
+      };
+      
+	document.addEventListener('DOMContentLoaded', function() {
+    	var elems = document.getElementById('provincia');
+    	var instances = M.Autocomplete.init(elems, {data :  provincias});
+
+  	});
+
 </script>
 @endsection

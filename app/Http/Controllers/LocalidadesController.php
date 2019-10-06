@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Pais;
 use App\Localidad;
 
 class LocalidadesController extends Controller
@@ -14,9 +15,10 @@ class LocalidadesController extends Controller
      */
     public function index()
     {
+        $paises = Pais::all();
         $localidades = Localidad::all();
 
-        return view('localidades', compact('localidades'));
+        return view('localidades', compact(['paises', 'localidades']));
     }
 
     /**
