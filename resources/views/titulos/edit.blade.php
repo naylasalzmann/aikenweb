@@ -1,13 +1,13 @@
 @extends('layoutPdc')
 
-@section('title', 'Localidades')
+@section('title', 'Editar título')
 
 @section('content')
 
-	<h3>Editar tipo de salida</h3>
+	<h3>Editar título</h3>
 
 	<div class="row">
-		<form method="POST" action="/pdc/tiposSalida/{{ $tipo->id }}">
+		<form method="POST" action="/pdc/titulos/{{ $titulo->id }}">
 			
 			@method('PATCH')
 
@@ -15,23 +15,23 @@
 
 	        <div class="input-field col s12">
 	          	<input 
-	          		id="tipoSalida" 
+	          		id="titulo" 
 	          		name="descripcion" 
 	          		type="text" 
 	          		class="validate" 
-	          		value="{{ $tipo->descripcion }}"
+	          		value="{{ $titulo->descripcion }}"
 					required
 					oninvalid="this.setCustomValidity('No olvides completar este campo.')"
 					oninput="this.setCustomValidity('')" 
 	          	>
-	          	<label for="tipoSalida" class="active">Tipo de salida</label>
+	          	<label for="titulo" class="active">Título</label>
 	        </div>
 	      	<div class="col s2">
 	      		<button class="btn waves-effect waves-light" type="submit" name="action">Editar
 				</button>
 	      	</div>
 		</form>
-		<form method="POST" action="/pdc/tiposSalida/{{ $tipo->id }}">
+		<form method="POST" action="/pdc/titulos/{{ $titulo->id }}">
 			
 			@method('DELETE')	
 

@@ -21,8 +21,6 @@ Route::get('/pdc/localidades/create', 'LocalidadesController@create');
 
 Route::get('/pdc/salidas', 'SalidasController@index'); //todo: usar resource
 
-Route::resource('/pdc/tiposSalida', 'TiposSalidaController');
-
 Route::view('/salidas', 'ficha'); // todo: usar controller @show
 
 Route::get('/pdc/guias', 'GuiasController@index');
@@ -30,3 +28,12 @@ Route::get('/pdc/guias', 'GuiasController@index');
 Route::get('/pdc/consultas', 'ConsultasController@index');
 
 Route::get('/pdc/reservas', 'ReservasController@index');
+
+Route::resource('/pdc/tiposSalida', 'TiposSalidaController');
+
+Route::resource('/pdc/condiciones', 'CondicionesController');
+
+Route::resource('/pdc/titulos', 'TitulosController');
+
+Route::resource('/pdc/guias', 'GuiasController');
+
