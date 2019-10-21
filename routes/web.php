@@ -15,12 +15,6 @@ Route::get('/', 'PagesController@home');
 
 Route::view('/pdc', 'pdc');
 
-Route::get('/pdc/localidades', 'LocalidadesController@index');
-
-Route::get('/pdc/localidades/create', 'LocalidadesController@create');
-
-Route::get('/pdc/salidas', 'SalidasController@index'); //todo: usar resource
-
 Route::view('/salidas', 'ficha'); // todo: usar controller @show
 
 Route::get('/pdc/guias', 'GuiasController@index');
@@ -36,4 +30,14 @@ Route::resource('/pdc/condiciones', 'CondicionesController');
 Route::resource('/pdc/titulos', 'TitulosController');
 
 Route::resource('/pdc/guias', 'GuiasController');
+
+Route::resource('/pdc/localidades', 'LocalidadesController');
+
+Route::resource('/pdc/zonas', 'ZonasController');
+
+Route::resource('/pdc/salidas', 'SalidasController');
+
+Route::post('/salidas/{salida}/fechas', 'SalidaFechasController@store');
+
+Route::patch('/fechas/{fecha}', 'SalidaFechasController@update');
 

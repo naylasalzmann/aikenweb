@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pais;
+use App\Provincia;
 use App\Localidad;
 
 class LocalidadesController extends Controller
@@ -15,10 +16,9 @@ class LocalidadesController extends Controller
      */
     public function index()
     {
-        $paises = Pais::all();
         $localidades = Localidad::all();
 
-        return view('localidades', compact(['paises', 'localidades']));
+        return view('localidades.index', compact('localidades'));
     }
 
     /**
@@ -28,7 +28,11 @@ class LocalidadesController extends Controller
      */
     public function create()
     {
-        return view('localidades');
+        $paises = Pais::all();
+        $provincias = Provincia::all();
+
+
+        return view('localidades.create', compact('paises', 'provincias'));
     }
 
     /**
@@ -39,7 +43,16 @@ class LocalidadesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'nombre' => ['required'],
+            'provincia_id' => ['required'],
+        ]);
+
+
+        Localidad::create($attributes);
+        
+
+        return redirect('/pdc/localidades');
     }
 
     /**
@@ -50,7 +63,9 @@ class LocalidadesController extends Controller
      */
     public function show($id)
     {
-        //
+        $localidad = Localidad::findOrFail($id);
+
+        return view('localidades.show', compact('localidad'));
     }
 
     /**
@@ -61,7 +76,11 @@ class LocalidadesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $localidad = Localidad::findOrFail($id);
+        $provincias = Provincia::all();
+
+
+        return view('localidades.edit', compact('localidad', 'provincias'));
     }
 
     /**
@@ -71,9 +90,20 @@ class LocalidadesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $localidad = Localidad::findOrFail($id);
+
+        $attributes = request()->validate([
+            'nombre' => ['required'],
+            'provincia_id' => ['required']
+        ]);
+
+        $localidad->update($attributes);
+
+
+
+        return redirect('/pdc/localidades');
     }
 
     /**
@@ -84,6 +114,9 @@ class LocalidadesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Localidad::findOrFail($id)->delete();
+
+
+        return redirect('/pdc/localidades');
     }
 }
