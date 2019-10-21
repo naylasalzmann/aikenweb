@@ -5,8 +5,8 @@
 @section('content')
 
 	<h1>{{ $guia->nombre }} {{ $guia->apellido }}</h1>
-	<div>{{ $guia->titulo_id }} por ahora</div>
-	<div>{{ $guia->localidad_id }}</div>
+	<div>{{ $guia->titulo ? $guia->titulo->descripcion : "No presenta"}}</div>
+	<div>{{ $guia->localidad->nombre }}</div>
 	<div>{{ $guia->identificacion }}</div>
 	<div>{{ $guia->fechaNacimiento }}</div>
 	<div>{{ $guia->direccion }}</div>

@@ -14,12 +14,38 @@ class GuiasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+
         $guias = Guia::all();
+        $titulos = Titulo::all();
+        $localidades = Localidad::all();
+        $selectedTitulo = null;
+        $selectedLocalidad = null;
 
 
-        return view('guias.index', compact('guias'));
+        if ($request->filled('titulo_id')) {
+
+            $selectedTitulo = Titulo::find($request->input('titulo_id'));
+
+            $guias = Guia::where('titulo_id', $request->input('titulo_id'))->get();  
+        }
+
+        if ($request->filled('localidad')) {
+
+            $selectedLocalidad = Localidad::where('nombre', $request->input('localidad'))->first();
+
+           $guias = Guia::where('localidad_id', $selectedLocalidad->id)->get(); 
+        }
+        
+
+        return view('guias.index', compact(
+            'guias', 
+            'titulos', 
+            'selectedTitulo',
+            'localidades', 
+            'selectedLocalidad'
+        ));
     }
 
     /**
@@ -44,23 +70,6 @@ class GuiasController extends Controller
      */
     public function store()
     {
-
-        /*$nombreLocalidad = request()->input('localidad');
-
-        $localidades = Localidad::all();
-
-        $idLocalidadSelected = $localidades->map(function ($localidad, $key) {
-            if ($localidad->nombre === request()->input('localidad')) {
-
-                return $localidad->id;
-            }
-        });
-
-
-        $attributes['localidad_id'] = $idLocalidadSelected[1];
-
-        return $attributes;*/
-
 
         $attributes = request()->validate([
             'titulo_id' => ['nullable'],
@@ -90,7 +99,9 @@ class GuiasController extends Controller
      */
     public function show(Guia $guia)
     {
+
         return view('guias.show', compact('guia'));
+
     }
 
     /**
@@ -101,7 +112,12 @@ class GuiasController extends Controller
      */
     public function edit(Guia $guia)
     {
-        return view('guias.edit', compact('guia'));
+        $localidades = Localidad::all();
+        
+        $titulos = Titulo::all();
+
+        return view('guias.edit', compact('guia', 'localidades', 'titulos'));
+
     }
 
     /**

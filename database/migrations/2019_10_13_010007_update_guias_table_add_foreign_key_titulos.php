@@ -15,7 +15,7 @@ class UpdateGuiasTableAddForeignKeyTitulos extends Migration
     {
         Schema::table('guias', function (Blueprint $table) {
 
-            $table->foreign('titulo_id')->references('id')->on('titulos');
+            $table->foreign('titulo_id')->references('id')->on('titulos');  
 
         });
     }
@@ -30,7 +30,7 @@ class UpdateGuiasTableAddForeignKeyTitulos extends Migration
         Schema::table('guias', function (Blueprint $table) {
 
             $table->dropForeign(['titulo_id']);
-            
+
         });
     }
 }
