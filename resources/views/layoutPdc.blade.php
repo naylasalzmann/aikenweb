@@ -9,6 +9,15 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.css')}}"  media="screen,projection"/>
+  <!--TODO: cambiar el siguiente estilo a su propio file -->
+  <style type="text/css">
+    
+    .is-concretada {
+
+        text-decoration: line-through;
+
+    }
+  </style>
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -58,6 +67,7 @@
 
      <!--JavaScript at end of body for optimized loading-->
       <script src="{{ asset('js/materialize.js') }}"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
       <script>
         document.addEventListener('DOMContentLoaded', function() {
           var elems = document.querySelectorAll('.dropdown-trigger');
