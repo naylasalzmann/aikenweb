@@ -17,6 +17,24 @@
         text-decoration: line-through;
 
     }
+
+    .text {
+      display: block;
+      width: 300px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+
+    tr:hover { 
+      background: 'light-blue';  
+    } 
+
+    td a { 
+      display: block; 
+    }
+
   </style>
 
   <!--Let browser know website is optimized for mobile-->
@@ -41,14 +59,19 @@
               <a href="#name"><span class="grey-text name">Admin</span></a>
               <a href="#email"><span class="grey-text email">admin@gmail.com</span></a>
             </div></li>
-            <li><a href="/pdc/reservas"><i class="material-icons">cloud</i>Reservas</a></li>
-            <li><a href="#!">Confirmaciones</a></li>
+            <li><a href=""><i class="material-icons">cloud</i></a></li>
+            <li><a href="/pdc/consultas">Consultas</a></li>
+            <li><a href="/pdc/reservas">Reservas</a></li>
+            <li><a href="/pdc/confirmaciones">Confirmaciones</a></li>
+            <li><a href="/pdc/cancelaciones">Cancelaciones</a></li>
+            <li><a href="/pdc/cobros">Mis cobros</a></li>
+            <li><a href="/pdc/aventureros">Aventureros de aiken</a></li>
             <li><div class="divider"></div></li>
-            <li><a class="subheader">Cancelaciones</a></li>
+            <li><a class="subheader">Soporte</a></li>
             <li><a class="waves-effect" href="/pdc/salidas">Salidas</a></li>
-            <li><a class="waves-effect" href="/pdc/consultas">Consultas</a></li>
             <li><a class="waves-effect" href="/pdc/guias">Guías</a></li>
-            <li><a class="waves-effect" href="/pdc/localidades">Localidades y zonas</a></li>
+            <li><a class="waves-effect" href="/pdc/localidades">Localidades</a></li>
+            <li><a class="waves-effect" href="/pdc/zonas">Zonas</a></li>
             <li><a class="dropdown-trigger" href="/pdc/localidades" data-target="dropdown1">Otros<i class="material-icons right">arrow_drop_down</i></a></li>
             <ul id='dropdown1' class='dropdown-content'>
               <li><a href="/pdc/tiposSalida">Tipos de salida</a></li>
