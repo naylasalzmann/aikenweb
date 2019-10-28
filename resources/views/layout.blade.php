@@ -31,6 +31,13 @@
       width:  100%;
     }
 
+    /* Modal de la ficha */
+    .modal { 
+      /*width: 50% !important;*/
+      /*height: 100% !important;*/
+     /* overflow-y: hidden !important ;*/
+    }
+
   </style>
 
   <!--Let browser know website is optimized for mobile-->
@@ -98,7 +105,7 @@
         var instances = M.Sidenav.init(sideNav, {});
     </script>
 
-@yield('scripts')
+    @yield('scripts')
 
 </body>
 </html>

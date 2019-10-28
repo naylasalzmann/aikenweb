@@ -135,6 +135,32 @@
 	</div>
 </section>
 
+
+<section id="proximas" class="section section-proximas scrollspy">
+	<div class="container">
+		<div class="row">
+			<h4 class="center">Próximas salidas</h4>
+			@foreach ($salidas as $salida)
+			 	<div class="col s12 m4">
+				<div class="card">
+					<div class="card-image">
+							<a href="/{{ $salida->id }}">
+								<img src="{{ asset('images/resort3.jpg') }}" href="/{{ $salida->id }}">	
+							</a> 
+						<span class="card-title">
+							<a class="white-text" href="/{{ $salida->id }}">{{ $salida->titulo }}</a> 
+						</span>
+					</div>
+					<div class="card-content">
+						{{ $salida->subtitulo }}
+					</div>
+				</div>
+			</div>
+			@endforeach	
+		</div>
+	</div>
+</section>
+
 <!-- Section: Follow -->
 <section class="section section-follow teal darken-2 white-text center">
 	<div class="container">

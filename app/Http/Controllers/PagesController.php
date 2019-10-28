@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Salida;
+use App\Pais;
+use App\Provincia;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
-    public function home() {
-        $proximas = [
-            'Trekking en Los Gigantes',
-            'Escalada en Capilla del Monte',
-            'Escalada en hielo en El Chaltén'
-        ];
+    public function index() {
         
-        return view('welcome')->withProximas($proximas);
+        $salidas = Salida::all();
+
+        return view('welcome', compact('salidas'));
     }
     
     
-    public function salidas() {
+    public function show($id) {
             
-        return view('salidas'); 
-    }
-        
-    public function pdc() {
-        
-        return view('pdc');
+        $salida = Salida::findOrFail($id);
+        $paises = Pais::all();
+        $provincias = Provincia::all();	
+
+
+        return view('ficha', compact('salida', 'paises', 'provincias')); 
     }
 
     

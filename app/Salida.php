@@ -38,10 +38,25 @@ class Salida extends Model
 
     }
 
+    public function consultas()
+    {
+
+        return $this->hasMany(Consulta::class);    
+
+    }
+
+    public function reservas()
+    {
+
+        return $this->hasManyThrough(Reserva::class, Fecha::class);
+
+    }
+
     public function addFecha($fecha)
     {
 
     	$this->fechas()->create($fecha);	
 
     }
+
 }
