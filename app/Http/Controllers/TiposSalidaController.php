@@ -37,10 +37,10 @@ class TiposSalidaController extends Controller
      */
     public function store()
     {
-
         $attributes = request()->validate([
             'descripcion' => ['required', 'min:3']
         ]);
+
 
         TipoSalida::create($attributes);
         
