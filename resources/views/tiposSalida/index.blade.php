@@ -1,6 +1,6 @@
 @extends('layoutPdc')
 
-@section('title', 'Localidades')
+@section('title', 'Tipos de salida')
 
 @section('content')
 
