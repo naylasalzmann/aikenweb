@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Consulta;
 use Illuminate\Http\Request;
 
 class ConsultasController extends Controller
@@ -11,9 +12,12 @@ class ConsultasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        
-        return view('consultas');
+    public function index()
+    {
+        $consultas = Consulta::all()->sortByDesc('id');
+
+
+        return view('consultas.index', compact('consultas'));
     }
 
     /**
@@ -34,27 +38,45 @@ class ConsultasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = request()->validate([
+            'salida_id' => ['nullable'],
+            'pais_id' => ['required'],
+            'provincia_id' => ['nullable'],
+            'nombre' => ['required'],
+            'apellido' => ['required'],
+            'telefono' => ['required', 'min:3'],
+            'email' => ['required', 'email'],
+            'descripcion' => ['required', 'min:5'],
+        ]);
+
+     
+
+        Consulta::create($attributes);
+        
+
+        return back();
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Consulta  $consulta
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Consulta $consulta)
     {
-        //
+
+        return view('consultas.show', compact('consulta'));
+        
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Consulta  $consulta
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Consulta $consulta)
     {
         //
     }
@@ -63,21 +85,26 @@ class ConsultasController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Consulta  $consulta
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Consulta $consulta)
     {
-        //
+        $consulta->update([
+
+            'vista' => request()->has('vista')
+        ]);
+
+        return back(); 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Consulta  $consulta
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Consulta $consulta)
     {
         //
     }
