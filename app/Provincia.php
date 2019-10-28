@@ -8,6 +8,11 @@ class Provincia extends Model
 {
     public function localidades() {
 
-    	return $this->hasMany(Localidades::class);
+    	return $this->hasMany(Localidad::class);
+    }
+
+    public function consultas() {
+
+    	return $this->hasMany(Consulta::class);
     }
 }

@@ -12,4 +12,9 @@ class Pais extends Model
 
     	return $this->hasMany(Provincia::class);
     }
+
+    public function consultas() {
+
+    	return $this->hasMany(Consulta::class);
+    }
 }
