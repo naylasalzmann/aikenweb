@@ -4,7 +4,7 @@
 
 @section('content')
 
-	<h1>{{ $salida->titulo }} {{ $salida->apellido }}</h1>
+	<h1>{{ $salida->titulo }}</h1>
 	<div>{{ $salida->tipo->descripcion }}</div>
 	<div>{{ $salida->condicion->titulo }}</div>
 	<div>{{ $salida->zona->nombre }}</div>
