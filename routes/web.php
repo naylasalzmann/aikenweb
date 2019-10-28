@@ -11,17 +11,22 @@
 |
 */
 
-Route::get('/', 'PagesController@home');
+Route::get('/', 'PagesController@index');
+
+Route::get('/{id}', 'PagesController@show');
 
 Route::view('/pdc', 'pdc');
 
-Route::view('/salidas', 'ficha'); // todo: usar controller @show
+/*Route::get('/checkout/thanks', function ($codigo) {
+	return view('thanks', ['codigo' => $codigo]);
+});*/
+
+Route::view('/checkout/thanks', 'thanks');
 
 Route::get('/pdc/guias', 'GuiasController@index');
 
 Route::get('/pdc/consultas', 'ConsultasController@index');
 
-Route::get('/pdc/reservas', 'ReservasController@index');
 
 Route::resource('/pdc/tiposSalida', 'TiposSalidaController');
 
@@ -40,4 +45,28 @@ Route::resource('/pdc/salidas', 'SalidasController');
 Route::post('/salidas/{salida}/fechas', 'SalidaFechasController@store');
 
 Route::patch('/fechas/{fecha}', 'SalidaFechasController@update');
+
+Route::get('/checkout/{id}', 'ReservasController@create');
+
+Route::post('/pdc/reservas', 'ReservasController@store'); //ver 
+
+Route::resource('/pdc/reservas', 'ReservasController')->only([  //ver
+    'index', 'show', 'edit', 'update', 'destroy'
+]);
+
+Route::patch('/reservas/estado/{reserva}', 'ReservaEstadosController@update');
+
+Route::resource('/pdc/confirmaciones', 'ConfirmacionesController');
+
+Route::resource('/pdc/cancelaciones', 'CancelacionesController');
+
+Route::resource('/pdc/cobros', 'CobrosController');
+
+Route::resource('/pdc/aventureros', 'AventurerosController');
+
+Route::resource('/pdc/consultas', 'ConsultasController');
+
+
+
+
 
