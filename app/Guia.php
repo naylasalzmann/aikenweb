@@ -8,10 +8,14 @@ class Guia extends Model
 {
     protected $guarded = [];
 
+    public function salidas()
+    {
+        return $this->belongsToMany('App\Salida');
+    }
+
     /**
      * Trae el titulo a quien le pertenece el guia.
      */
-
     public function titulo()
     {
         return $this->belongsTo('App\Titulo');
@@ -21,4 +25,5 @@ class Guia extends Model
     {
         return $this->belongsTo('App\Localidad');
     }
+
 }

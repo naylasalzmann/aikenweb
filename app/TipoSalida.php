@@ -13,7 +13,7 @@ class TipoSalida extends Model
     public function salidas()
     {
 
-    	return $this->hasMany(Salida::class);	
+    	return $this->hasMany(Salida::class, 'tipo_id');	
 
     }
     

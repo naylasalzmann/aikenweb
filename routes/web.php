@@ -15,17 +15,13 @@ Route::get('/', 'PagesController@index');
 
 Route::get('/{id}', 'PagesController@show');
 
-Route::view('/pdc', 'pdc');
-
-/*Route::get('/checkout/thanks', function ($codigo) {
-	return view('thanks', ['codigo' => $codigo]);
-});*/
+Route::get('/pdc/dashboard', 'DashboardController@index');
 
 Route::view('/checkout/thanks', 'thanks');
 
-Route::get('/pdc/guias', 'GuiasController@index');
+Route::get('/pdc/guias', 'GuiasController@index'); // ver y sacar
 
-Route::get('/pdc/consultas', 'ConsultasController@index');
+Route::get('/pdc/consultas', 'ConsultasController@index'); // ver y sacar
 
 
 Route::resource('/pdc/tiposSalida', 'TiposSalidaController');

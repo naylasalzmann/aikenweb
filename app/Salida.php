@@ -8,7 +8,12 @@ class Salida extends Model
 {
     protected $guarded = [];
 
+    public function guias()
+    {
 
+        return $this->belongsToMany('App\Guia');
+
+    }
 
     public function fechas()
     {

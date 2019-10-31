@@ -118,6 +118,23 @@
           	>
           	<label for="cupo_maximo">Cupo máximo</label>
         </div>
+        <div class="input-field col s12">
+		    <select multiple id="guias" class="guias" name="guiasSelect" onChange="getSelectedValues()">
+		      <option value="" disabled selected>Guías: </option>
+		      	@foreach ($guias as $guia)
+					  <option value="{{ $guia->id }}">{{ $guia->nombre }} {{ $guia->apellido }}</option>
+	        	@endforeach
+		    </select>
+		    <label>Guías</label>
+		</div>
+		<div class="input-field col s12">
+            <input 
+                id="guias" 
+                name="guias" 
+                type="hidden" 
+                value="{{ 0 }}" 
+             >
+        </div>
       	<div class="col s12">
       		<button class="btn waves-effect waves-light" type="submit" name="action">Submit
 				<i class="material-icons right">send</i>
@@ -140,7 +157,12 @@
       	</div>
 	</form>
 </div>
-<script type="text/javascript">
+
+
+@endsection
+
+@section('scripts')
+	<script type="text/javascript">
 
 	const tipos = {!! json_encode($tipos->toArray()) !!};
 
@@ -212,9 +234,27 @@
 	});
 
 
+	const guias = {!! json_encode($guias->toArray()) !!};
+
+	const guiasParaSelect =  guias.reduce((obj, item) => {
+  		obj[item['nombre']] = null
+  		return obj
+	}, {}); 
+
+	
+	const elems = document.querySelector('.guias');
+	const inst = M.FormSelect.init(elems, {data : guiasParaSelect});
+  	function getSelectedValues() {
+
+   		console.log(inst.getSelectedValues()); 
+
+        document.getElementsByName('guias')[0].value = JSON.stringify(inst.getSelectedValues());
+
+        console.log(document.getElementsByName('guias')[0].value);
+
+   	}
+
 
 
 </script>
-
 @endsection
-
