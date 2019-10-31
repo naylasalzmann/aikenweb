@@ -59,7 +59,7 @@
               <a href="#name"><span class="grey-text name">Admin</span></a>
               <a href="#email"><span class="grey-text email">admin@gmail.com</span></a>
             </div></li>
-            <li><a href=""><i class="material-icons">cloud</i></a></li>
+            <li><a href="/pdc/dashboard"><i class="material-icons">cloud</i>Dashboard</a></li>
             <li><a href="/pdc/consultas">Consultas</a></li>
             <li><a href="/pdc/reservas">Reservas</a></li>
             <li><a href="/pdc/confirmaciones">Confirmaciones</a></li>

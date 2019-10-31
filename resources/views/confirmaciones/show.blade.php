@@ -11,6 +11,8 @@
 	<div>{{ $confirmacion->reserva->telefono }}</div>
 	<div>{{ $confirmacion->reserva->email }}</div>
 	<div>{{ $confirmacion->reserva->monto_total }}</div>
+	<div>{{ $confirmacion->reserva->fecha->getFormattedInicio() }}</div>
+
 
 
 @endsection
