@@ -4,7 +4,6 @@
 
 @section('content')
 
-	
 	<h1>Reservas confirmadas</h1>
 
 	<table id="my-table-id">
@@ -25,7 +24,7 @@
             </td>
             <td>
               <a href="/pdc/confirmaciones/{{ $confirmacion->id }}" class="teal-text" >
-                {{ $confirmacion->reserva->nombre }}
+                {{ $confirmacion->reserva->nombre }}, {{ $confirmacion->reserva->fecha->salida_id }}
               </a>
           </td>
             <td>
@@ -101,6 +100,12 @@
             <form method="GET" action="/pdc/cobros/create">
               @csrf
 
+              <input 
+                  name="salida_id" 
+                  hidden
+                  type="text" 
+                  value="{{ $confirmacion->reserva->fecha->salida_id }}"
+              >
               <input 
                   name="identificacion" 
                   hidden

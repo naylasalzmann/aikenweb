@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class Reserva extends Model
 {
@@ -37,5 +39,19 @@ class Reserva extends Model
     public function salida()
     {
         return $this->hasOneThrough(Salida::class, Fecha::class);
+    }
+
+    public function getAge() {
+
+        $years = Carbon::parse($this->fecha_nacimiento)->age;
+
+
+        return $years ? $years : '';
+    }
+
+    public function getAcompañantes() {
+        $cantidad = $this->cant_aventureros == 1 ? 0 : $this->cant_aventureros - 1;
+
+        return $cantidad;  
     }
 }

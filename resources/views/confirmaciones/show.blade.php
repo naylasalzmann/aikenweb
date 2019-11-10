@@ -12,6 +12,7 @@
 	<div>{{ $confirmacion->reserva->email }}</div>
 	<div>{{ $confirmacion->reserva->monto_total }}</div>
 	<div>{{ $confirmacion->reserva->fecha->getFormattedInicio() }}</div>
+	<div>{{ $confirmacion->reserva->cant_aventureros }}</div>
 
 
 

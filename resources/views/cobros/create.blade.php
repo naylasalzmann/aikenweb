@@ -97,6 +97,12 @@
           	>
           	<label for="concepto">Concepto</label>
         </div>
+        <input 
+            name="salida_id" 
+            hidden
+            type="text" 
+            value="{{ $reserva['salida_id'] }}"
+        >
       	<div class="col s12">
       		<button class="btn waves-effect waves-light" type="submit" name="action">Submit
     				<i class="material-icons right">send</i>

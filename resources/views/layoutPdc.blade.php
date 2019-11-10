@@ -5,10 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-<!--Import Google Icon Font-->
+  <!--Import Google Icon Font-->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <!--Import materialize.css-->
   <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.css')}}"  media="screen,projection"/>
+
+   
+
   <!--TODO: cambiar el siguiente estilo a su propio file -->
   <style type="text/css">
     
@@ -44,7 +47,7 @@
      
     <title>@yield('title', 'Panel de control')</title>
 </head>
-<body>
+<body class="scrollspy">
 
   <div class="container">
       <div class="row">
@@ -59,13 +62,14 @@
               <a href="#name"><span class="grey-text name">Admin</span></a>
               <a href="#email"><span class="grey-text email">admin@gmail.com</span></a>
             </div></li>
-            <li><a href="/pdc/dashboard"><i class="material-icons">cloud</i>Dashboard</a></li>
+            <li><a href="/pdc/dashboard">Dashboard</a></li>
             <li><a href="/pdc/consultas">Consultas</a></li>
             <li><a href="/pdc/reservas">Reservas</a></li>
             <li><a href="/pdc/confirmaciones">Confirmaciones</a></li>
             <li><a href="/pdc/cancelaciones">Cancelaciones</a></li>
             <li><a href="/pdc/cobros">Mis cobros</a></li>
-            <li><a href="/pdc/aventureros">Aventureros de aiken</a></li>
+            <li><a href="/pdc/fechas">Fechas pendientes</a></li>
+            <li><a href="/pdc/aventureros">Aventureros registrados</a></li>
             <li><div class="divider"></div></li>
             <li><a class="subheader">Soporte</a></li>
             <li><a class="waves-effect" href="/pdc/salidas">Salidas</a></li>
@@ -96,6 +100,15 @@
           var elems = document.querySelectorAll('.dropdown-trigger');
           var instances = M.Dropdown.init(elems, {});
         });
+      </script>
+      <script type="text/javascript">
+        function printData() {
+        const divToPrint=document.getElementById("print");
+        newWin= window.open("");
+        newWin.document.write(divToPrint.outerHTML);
+        newWin.print();
+        newWin.close();
+      }
       </script>
       @yield('scripts')
 </body>

@@ -12,6 +12,7 @@
 	<div>{{ $consulta->telefono }}</div>
 	<div>{{ $consulta->email }}</div>
 	<div>{{ $consulta->descripcion }}</div>
+	<div>{{ $consulta->created_at }}</div>
 
 
 @endsection

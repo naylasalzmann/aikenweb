@@ -19,11 +19,6 @@ Route::get('/pdc/dashboard', 'DashboardController@index');
 
 Route::view('/checkout/thanks', 'thanks');
 
-Route::get('/pdc/guias', 'GuiasController@index'); // ver y sacar
-
-Route::get('/pdc/consultas', 'ConsultasController@index'); // ver y sacar
-
-
 Route::resource('/pdc/tiposSalida', 'TiposSalidaController');
 
 Route::resource('/pdc/condiciones', 'CondicionesController');
@@ -41,6 +36,8 @@ Route::resource('/pdc/salidas', 'SalidasController');
 Route::post('/salidas/{salida}/fechas', 'SalidaFechasController@store');
 
 Route::patch('/fechas/{fecha}', 'SalidaFechasController@update');
+
+Route::get('/pdc/fechas', 'SalidaFechasController@index');
 
 Route::get('/checkout/{id}', 'ReservasController@create');
 

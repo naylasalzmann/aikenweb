@@ -14,7 +14,6 @@
 		          <th>Código de reserva</th>
 		          <th>Nombre</th>
 		          <th>Apellido</th>
-		          <th>DNI</th>
 		          <th>Importe</th>
 		          <th>Concepto</th>
 		          <th>Fecha</th>
@@ -27,7 +26,6 @@
 	            <td>{{ $cobro->codigo_reserva }}</td>
 	            <td>{{ $cobro->nombre }}</td>
 	            <td>{{ $cobro->apellido }}</td>
-	            <td>{{ $cobro->identificacion }}</td>
 	            <td>{{ $cobro->importe }}</td>
 	            <td>{{ $cobro->concepto }}</td>
 	            <td>{{ $cobro->fecha }}</td>

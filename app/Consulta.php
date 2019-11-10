@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class Consulta extends Model
 {
@@ -27,6 +29,16 @@ class Consulta extends Model
 
     	return $this->belongsTo(Provincia::class);	
 
+    }
+
+    public function getNombreMes() {
+        setlocale(LC_ALL,"es_ES"); 
+        Carbon::setLocale('es'); 
+
+        $fecha = Carbon::parse($this->created_at);
+        $mes = $fecha->format("F");
+
+        return $mes;
     }
     
 }

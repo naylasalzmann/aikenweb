@@ -42,6 +42,7 @@ class CobrosController extends Controller
     {
         $attributes = request()->validate([
             'identificacion' => ['nullable'],
+            'salida_id' => ['nullable'],
             'nombre' => ['required'],
             'apellido' => ['required'],
             'codigo_reserva' => ['nullable'],

@@ -27,39 +27,48 @@
 		</form>
 	</div>
 	<p>{{ $selectedLocalidad->nombre ?? '' }}</p>
+	
 
-	<h1>Aventureros de Aiken</h1>
+<div class="row">
+	<div class="col s11" id="print">
+		<h3>Aventureros registrados</h3>
+		<ul>
+		 	<table >
+			    <thead>
+			      <tr>
+			          <th>Nombre</th>
+			          <th>Apellido</th>
+			          <th>DNI</th>
+			          <th>Edad</th>
+			          <th>Teléfono</th>
+			          <th>Email</th>
+			      </tr>
+			    </thead>	
 
-	<ul>
-	 	<table>
-		    <thead>
-		      <tr>
-		          <th>Nombre</th>
-		          <th>Apellido</th>
-		          <th>DNI</th>
-		          <th>Edad</th>
-		          <th>Teléfono</th>
-		          <th>Email</th>
-		      </tr>
-		    </thead>	
-
-    		<tbody>
-			@foreach ($aventureros as $aventurero)
-	          	<tr>
-	            <td>{{ $aventurero->nombre }}</td>
-	            <td>{{ $aventurero->apellido }}</td>
-	            <td>{{ $aventurero->identificacion }}</td>
-	            <td>{{ $aventurero->getAge() }}</td>
-	            <td>{{ $aventurero->telefono }}</td>
-	            <td>{{ $aventurero->email }}</td>
-	            <td>
-	            	<a href="/pdc/aventureros/{{ $aventurero->id }}">Ver</a>
-	            </td>
-	          </tr>
-			@endforeach	
-        </tbody>
-      </table>
-	</ul>
+	    		<tbody>
+				@foreach ($aventureros as $aventurero)
+		          	<tr>
+		            <td>{{ $aventurero->nombre }}</td>
+		            <td>{{ $aventurero->apellido }}</td>
+		            <td>{{ $aventurero->identificacion }}</td>
+		            <td>{{ $aventurero->getAge() }}</td>
+		            <td>{{ $aventurero->telefono }}</td>
+		            <td>{{ $aventurero->email }}</td>
+		            <td>
+		            	<a href="/pdc/aventureros/{{ $aventurero->id }}">Ver</a>
+		            </td>
+		          </tr>
+				@endforeach	
+	        </tbody>
+	      </table>
+		</ul>
+	</div>
+	<div class="col s1" id="print">
+		<a href="" onClick="printData()" target="_blank" class="teal-text">
+			<i class="material-icons">print</i>
+		</a>
+	</div>
+</div>
 
 @endsection
 
@@ -76,6 +85,8 @@
 
 	var elems = document.querySelectorAll('.autocomplete');
 	var instances = M.Autocomplete.init(elems, { data: options });
+
+
 
 </script>
 @endsection
