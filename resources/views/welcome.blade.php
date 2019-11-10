@@ -142,7 +142,7 @@
 			<h4 class="center">Próximas salidas</h4>
 			@foreach ($salidas as $salida)
 			 	<div class="col s12 m4">
-				<div class="card">
+				<div class="card small">
 					<div class="card-image">
 							<a href="/{{ $salida->id }}">
 								<img src="{{ asset('images/resort3.jpg') }}" href="/{{ $salida->id }}">	
