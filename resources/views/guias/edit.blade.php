@@ -41,7 +41,7 @@
 			</div>
 			<div class="input-field col s6">
     			<select id="titulo" name="titulo_id" class="titulo">
- 				   	<option value="{{ $guia->titulo_id }}">{{ $guia->titulo->descripcion }}</option>
+ 				   	<option value="{{ $guia->titulo_id }}">{{ $guia->titulo->descripcion ?? ''}}</option>
         	 		@foreach ($titulos as $titulo)
   				    	<option value="{{ $titulo->id }}">{{ $titulo->descripcion }}</option>
         	 		@endforeach

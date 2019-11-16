@@ -130,7 +130,7 @@ class GuiasController extends Controller
     public function update(Guia $guia)
     {
         $attributes = request()->validate([
-            'titulo_id' => ['required'],
+            'titulo_id' => ['nullable'],
             'localidad_id' => ['required'],
             'nombre' => ['required'],
             'apellido' => ['required'],
