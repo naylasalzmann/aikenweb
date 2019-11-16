@@ -38,7 +38,7 @@
 </ul>
 </section> 
 
-<!-- Section: Search -->	
+<!-- Section: Search 	
 <section id="search" class="section section-search teal darken-1 white-text center scrollspy">
 	<div class="container">
 		<div class="row">
@@ -56,7 +56,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section>-->
 
 <!-- Section: Icon Boxes -->
 <section class="section section-icons grey lighten-4 center">
@@ -140,19 +140,20 @@
 	<div class="container">
 		<div class="row">
 			<h4 class="center">Próximas salidas</h4>
-			@foreach ($salidas as $salida)
+			@foreach ($photosPorSalida as $salida)
 			 	<div class="col s12 m4">
 				<div class="card small">
 					<div class="card-image">
-							<a href="/{{ $salida->id }}">
-								<img src="{{ asset('images/resort3.jpg') }}" href="/{{ $salida->id }}">	
+							<a href="/{{ $salida['id'] }}">
+								<img src="{{ asset('storage/'.$salida['portada']) }}">
+
+								<!--<img src="{{ asset('images/resort3.jpg') }}" href="/{{ $salida['id'] }}">	-->
 							</a> 
-						<span class="card-title">
-							<a class="white-text" href="/{{ $salida->id }}">{{ $salida->titulo }}</a> 
-						</span>
 					</div>
-					<div class="card-content">
-						{{ $salida->subtitulo }}
+					<div class="card-content">	
+					<span class="card-title">
+						<a class="grey-text text-darken-2" href="/{{ $salida['id'] }}">{{ $salida['titulo'] }}</a> 
+					</span>
 					</div>
 				</div>
 			</div>
@@ -264,10 +265,7 @@
 	</div>
 </section>
 
-<!-- Footer -->
-<footer class="section teal darken-2 white-text center">
-	<p class="flow-text">Aiken Outdoor Activities &copy; 2020</p>
-</footer>
+
 
 @endsection
 
@@ -276,9 +274,10 @@
 	// Slider
 	const slider = document.querySelector('.slider');
 	M.Slider.init(slider, {
+		//fullWidth: true,
 		indicators: false,
-		heigth: 500,
-		transition: 500,
+		height: 605,
+		//transition: 500,
 		interval: 6000
 	});
 

@@ -61,4 +61,19 @@ class Fecha extends Model
 		
 		return $inicio->diffInHours($fin);
 	}
+
+	public function getSmartDuration() {
+		switch ($this) {
+			case $this->getDaysDuration() == 1:
+				return $this->getDaysDuration().' día';
+				break;
+				case $this->getDaysDuration() > 1:
+				return $this->getDaysDuration().' días';
+				break;
+			
+			default:
+				return $this->getHoursDuration().' horas';
+				break;
+		}
+	}
 }

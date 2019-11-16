@@ -90,6 +90,43 @@
       		
 		</form>
 	</div>
+	<div class="row">
+		<h4>Fotos</h4>	
 
 
+		<!--<img src="{{  asset('storage/demo.png') }}">-->
+		
+		<!-- <img src="{{  asset('storage/salidas/1/tws.jpeg') }}"> -->
+		<!--<img src="{{ url('storage/app/public/demo.png') }}" alt="" title="" /> -->
+
+		@foreach ($photos as $photo)
+			<img style="height: 200; width: 150px;" src="{{  asset('storage/'.$photo) }}">
+		@endforeach
+
+		<h4>Agregar fotos</h4>
+		<form method="POST" action="/pdc/salidas/{{ $salida->id }}" enctype="multipart/form-data">
+			@method('PATCH')	
+
+			@csrf
+
+			<!-- img upload -->
+	        <div class="file-field input-field col s12">
+		      <div class="btn">
+		        <span>File</span>
+		        <input type="file" name="photos[]" multiple>
+		      </div>
+		      <div class="file-path-wrapper">
+		        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+		      </div>
+		    </div>
+
+		    <div class="col s12">
+	      		<button class="btn waves-effect waves-light" type="submit" name="action">Agregar
+					<i class="material-icons right">send</i>
+				</button>
+      		</div>
+
+      		@include ('errors')
+		</form>
+	</div>
 @endsection

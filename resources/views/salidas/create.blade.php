@@ -8,7 +8,7 @@
 <h3>Crea una nueva salida</h3>
 
 <div class="row">
-	<form method="POST" action="/pdc/salidas">
+	<form method="POST" action="/pdc/salidas" enctype="multipart/form-data">
 		
 		@csrf
 
@@ -120,7 +120,6 @@
         </div>
         <div class="input-field col s12">
 		    <select multiple id="guias" class="guias" name="guiasSelect" onChange="getSelectedValues()">
-		      <option value="" disabled selected>Guías: </option>
 		      	@foreach ($guias as $guia)
 					  <option value="{{ $guia->id }}">{{ $guia->nombre }} {{ $guia->apellido }}</option>
 	        	@endforeach
@@ -135,6 +134,19 @@
                 value="{{ 0 }}" 
              >
         </div>
+
+        <!-- img upload -->
+
+        <div class="file-field input-field col s12">
+	      <div class="btn">
+	        <span>File</span>
+	        <input type="file" name="photos[]" multiple>
+	      </div>
+	      <div class="file-path-wrapper">
+	        <input class="file-path validate" type="text" placeholder="Upload one or more files">
+	      </div>
+	    </div>
+
       	<div class="col s12">
       		<button class="btn waves-effect waves-light" type="submit" name="action">Submit
 				<i class="material-icons right">send</i>

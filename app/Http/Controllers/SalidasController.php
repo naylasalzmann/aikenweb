@@ -8,6 +8,7 @@ use App\TipoSalida;
 use App\Condicion;
 use App\Zona;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SalidasController extends Controller
 {
@@ -24,8 +25,6 @@ class SalidasController extends Controller
         $selectedTipo = null;
         $selectedZona = null;
 
-
-        //return $request->tipo_id;
         if ($request->filled('tipo_id')) {
 
             $salidas = Salida::where('tipo_id', $request->tipo_id)->get();
@@ -83,6 +82,14 @@ class SalidasController extends Controller
      */
     public function store(Request $request, Salida $salida)
     {
+        $photos = request()->validate([
+            'photos' => ['required', 'min:4'],
+            'photos.*' => ['image', 'max:5000'],
+        ],[
+            'photos.required' => 'Debe subir una imagen.',
+            'photos.min' => 'Debe subir al menos 4 imágenes.',
+            'photos.*.image' => 'El archivo debe ser una imagen.',
+        ]);
 
         $attributes = request()->validate([
             'tipo_id' => ['required'],
@@ -96,18 +103,29 @@ class SalidasController extends Controller
             'precio' => ['required', 'numeric'],
         ]);
 
-     
-
+        // crear salida
         $sal = Salida::create($attributes);
 
-
-
+        // asignar guias
         $guiasIds = request()->guias;
 
         $g = json_decode($guiasIds, true);
 
         $sal->guias()->attach($g);
         
+
+        // subir fotos
+        if (request()->hasFile('photos')) {
+
+            foreach(request()->file('photos') as $photo) // TO DO cambiar request por $photos y probar
+            {
+
+                $photo->store('/public/salidas/' . $salida->id);
+                
+            }
+        }
+
+
 
         return redirect('/pdc/salidas');
     }
@@ -119,8 +137,12 @@ class SalidasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Salida $salida)
-    {
-        return view('salidas.show', compact('salida'));
+    {   
+        // traigo las fotos segun el nombre de la carpeta, que es igual a su id
+        $photos = Storage::disk('public')->allFiles('/salidas/' . $salida->id);
+
+
+        return view('salidas.show', compact('salida', 'photos'));
     }
 
     /**
@@ -148,31 +170,51 @@ class SalidasController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Salida $salida)
-    {
-        $attributes = request()->validate([
-            'tipo_id' => ['required'],
-            'condicion_id' => ['required'],
-            'zona_id' => ['required'],
-            'titulo' => ['required', 'min:3'],
-            'subtitulo' => ['required', 'min:3'],
-            'descripcion' => ['required', 'min:3'],
-            'cupo_maximo' => ['required', 'integer'],
-            'cupo_minimo' => ['required', 'integer'],
-            'precio' => ['required', 'numeric'],
+    {   
+        $photos = request()->validate([
+            'photos' => 'required',
+            'photos.*' => ['image', 'max:5000'],
+        ],[
+            'photos.required' => 'Debe subir una imagen.',
+            'photos.*.image' => 'El archivo debe ser una imagen.',
         ]);
 
+        // si se actualizan las fotos, las agrego
+        if (request()->hasFile('photos')) {
+            foreach(request()->file('photos') as $photo)
+            {
 
-        $salida->update($attributes);
+                $photo->store('/public/salidas/' . $salida->id);
+                
+            }
+        }
+        else {
 
-        // si se actualizan los guías, los reemplazo
-        if (request()->filled('guias')) {
-            $guiasIds = json_decode(request()->guias, true);
-            $salida->guias()->sync($guiasIds);
+            $attributes = request()->validate([
+                'tipo_id' => ['required'],
+                'condicion_id' => ['required'],
+                'zona_id' => ['required'],
+                'titulo' => ['required', 'min:3'],
+                'subtitulo' => ['required', 'min:3'],
+                'descripcion' => ['required', 'min:3'],
+                'cupo_maximo' => ['required', 'integer'],
+                'cupo_minimo' => ['required', 'integer'],
+                'precio' => ['required', 'numeric'],
+            ]);
+
+
+            $salida->update($attributes);
+
+            // si se actualizan los guías, los reemplazo
+            if (request()->filled('guias')) {
+                $guiasIds = json_decode(request()->guias, true);
+                $salida->guias()->sync($guiasIds);
+            }
         }
 
+    
 
-
-        return redirect('/pdc/salidas');
+        return back();
     }
 
     /**
