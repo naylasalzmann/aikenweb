@@ -11,7 +11,6 @@
           <tr>
               <th>Reserva</th>
               <th>Nombre</th>
-              <th>Apellido</th>
               <th>Monto</th>
           </tr>
         </thead>
@@ -24,12 +23,7 @@
             </td>
             <td>
               <a href="/pdc/confirmaciones/{{ $confirmacion->id }}" class="teal-text" >
-                {{ $confirmacion->reserva->nombre }}, {{ $confirmacion->reserva->fecha->salida_id }}
-              </a>
-          </td>
-            <td>
-              <a href="pdc/confirmaciones/{{ $confirmacion->id }}" class="teal-text">
-              {{ $confirmacion->reserva->apellido }}
+                {{ $confirmacion->reserva->nombre }} {{ $confirmacion->reserva->apellido }}
               </a>
             </td>
             <td>
@@ -91,7 +85,7 @@
                       data-position="bottom"
                       data-tooltip="Agregar aventurero"
               >
-                +
+                <i class="material-icons">add</i>
               </button>
             </form>
             </td>
@@ -137,11 +131,11 @@
                   value="{{ $confirmacion->reserva->monto_total }}"
               >
                 <button 
-                    class="modal-close btn waves-effect waves-light" 
+                    class="btn waves-effect waves-light" 
                     type="submit" 
                     name="action"
                   >
-                    Registrar cobro
+                    Cobrar
                 </button>
             </form>
             </td>
@@ -229,7 +223,8 @@
                     >
 
                     <button 
-        				    	class="modal-close btn waves-effect waves-light red" 
+                      onclick="return confirm('Estás seguro de que quieres cancelar esta reserva?');"
+        				    	class="btn waves-effect waves-light red" 
         				    	type="submit" 
         				    	name="action"
 		    		        >
