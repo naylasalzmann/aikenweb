@@ -15,5 +15,11 @@
 		@endforeach	
 	</ul>
 
+	<div class="fixed-action-btn">
+		<a href="{{ route('tiposSalida.create') }}" class="btn-floating btn-large waves-effect waves-light teal">
+			<i class="material-icons">add</i>
+		</a>
+	</div>
+
 @endsection
 
