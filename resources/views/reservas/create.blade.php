@@ -14,6 +14,9 @@
   <link type="text/css" rel="stylesheet" href="{{asset('css/materialize.min.css')}}"  media="screen,projection"/>
 
    <style type="text/css">
+    .brand-logo {
+      margin-left: 32px;
+    }
    
   </style>
 
@@ -27,12 +30,10 @@
  <!-- Navbar -->
 <div class="navbar-fixed">
   <nav class="teal">
-    <div class="container">
       <div class="nav-wrapper">
         <a href="/" class="brand-logo">Aiken</a>
       </div>
     </nav>
-    </div>
 </div>
 
 <!-- Section: Datos -->
@@ -46,7 +47,7 @@
           <div class="col s12">
             <h5>A tener en cuenta</h5>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. In sed ornare nibh. Fusce sodales bibendum odio, eget blandit nibh dictum vitae.
+              {{ $fecha->salida->condicion->descripcion }}
             </p>
 
             <h5>Tus datos</h5>
@@ -230,9 +231,13 @@
                 <span>{{ $fecha->getHoursDuration() }} horas</span>
           @endswitch
         </div>
-        <div>Guia NTH</div>
+        <div>Guía: 
+          @foreach ($fecha->salida->guias as $guia)
+            <span>{{ $guia->nombre }} {{ $guia->apellido }}</span>
+          @endforeach  
+        </div>
         <div>Inicio: {{ $fecha->getFormattedInicio() }}</div>
-        <div id="precio" data-value="{{ $fecha->salida->precio }}">Precio: {{ $fecha->salida->precio }}</div>
+        <div id="precio" data-value="{{ $fecha->salida->precio }}">Precio: ${{ $fecha->salida->precio }}</div>
         <div class="row">
           <div class="input-field col s12">
             Total
