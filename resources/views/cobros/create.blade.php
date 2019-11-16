@@ -101,7 +101,7 @@
             name="salida_id" 
             hidden
             type="text" 
-            value="{{ $reserva['salida_id'] }}"
+            value="{{ $reserva['salida_id'] ?? null }}"
         >
       	<div class="col s12">
       		<button class="btn waves-effect waves-light" type="submit" name="action">Submit

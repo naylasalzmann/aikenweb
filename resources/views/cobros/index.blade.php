@@ -13,7 +13,6 @@
 		      <tr>
 		          <th>Código de reserva</th>
 		          <th>Nombre</th>
-		          <th>Apellido</th>
 		          <th>Importe</th>
 		          <th>Concepto</th>
 		          <th>Fecha</th>
@@ -23,13 +22,12 @@
     		<tbody>
 			@foreach ($cobros as $cobro)
 	          	<tr>
-	            <td>{{ $cobro->codigo_reserva }}</td>
-	            <td>{{ $cobro->nombre }}</td>
-	            <td>{{ $cobro->apellido }}</td>
-	            <td>{{ $cobro->importe }}</td>
-	            <td>{{ $cobro->concepto }}</td>
-	            <td>{{ $cobro->fecha }}</td>
-	            <td>
+		            <td>{{ $cobro->codigo_reserva }}</td>
+		            <td>{{ $cobro->nombre }} {{ $cobro->apellido }}</td>
+		            <td>{{ $cobro->importe }}</td>
+		            <td>{{ $cobro->concepto }}</td>
+		            <td>{{ $cobro->fecha }}</td>
+		            <td>
 		            <form method="POST" action="/pdc/cobros/{{ $cobro->id }}">
 							@method('PATCH')
 							@csrf
@@ -52,6 +50,12 @@
         </tbody>
       </table>
 	</ul>
+
+	<div class="fixed-action-btn">
+	  <a href="{{ route('cobros.create') }}" class="btn-floating btn-large waves-effect waves-light teal">
+	    <i class="material-icons">add</i>
+	  </a>
+	</div>
 
 @endsection
 
