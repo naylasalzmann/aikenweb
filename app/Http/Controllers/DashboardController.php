@@ -202,46 +202,6 @@ class DashboardController extends Controller
 		->color($borderColors)
 		->backgroundcolor($fillColors); 
 
-
-    	// CONFIRMACIONES POR MES
-    	$confirmaciones = Confirmacion::all();
-    	$confirmacionesPorMes = $confirmaciones->groupBy('created_at.month');
-
-    	$cantidadDeConfirmacionesPorMes = $confirmacionesPorMes->map(function ($confirmacion, $key) {
-    		
-    		return $confirmacion->count();
-    	});
-
-    	// CANCELACIONES POR MES
-    	$cancelaciones = Cancelacion::all();
-    	$cancelacionesPorMes = $cancelaciones->groupBy('created_at.month');
-
-    	$cantidadDeCancelacionesPorMes = $cancelacionesPorMes->map(function ($cancelacion, $key) {
-    		
-    		return $cancelacion->count();
-    	});
-
-   
-   		// CHART DE CONFIRMACIONES Y CANCELACIONES 
-    	$confirmacionesChart = new SampleChart;
-        $confirmacionesChart->labels($meses);
-        $confirmacionesChart->dataset(
-        	'Reservas confirmadas', 
-        	'line',
-        	$cantidadDeConfirmacionesPorMes->values() 
-        )
-        ->color("rgba(22,160,133, 1.0)")
-        ->backgroundcolor("rgba(22,160,133, 0.2)");
-        $confirmacionesChart->dataset(
-        	'Reservas canceladas', 
-        	'line',
-        	$cantidadDeCancelacionesPorMes->values() 
-        )
-        ->color("rgba(255, 99, 132, 1.0)")
-        ->backgroundcolor("rgba(255, 99, 132, 0.2)");
-
-
-
     	// RESERVAS POR MES
     	$reservas = Reserva::all();
     	$reservasPorMes = $reservas->groupBy('created_at.month');
@@ -288,6 +248,48 @@ class DashboardController extends Controller
         	'Reservas rechazadas', 
         	'line',
         	$cantidadDeReservasRechazadasPorMes->values() 
+        )
+        ->color("rgba(255, 99, 132, 1.0)")
+        ->backgroundcolor("rgba(255, 99, 132, 0.2)");
+
+    	// CONFIRMACIONES POR MES
+    	$confirmaciones = Confirmacion::all();
+    	$confirmacionesPorMes = $confirmaciones->groupBy('created_at.month');
+
+    	$cantidadDeConfirmacionesPorMes = $confirmacionesPorMes->map(function ($confirmacion, $key) {
+    		
+    		return $confirmacion->count();
+    	});
+
+    	// CANCELACIONES POR MES
+    	$cancelaciones = Cancelacion::all();
+    	$cancelacionesPorMes = $cancelaciones->groupBy('created_at.month');
+    	$cantidadDeCancelacionesPorMes = $cancelacionesPorMes->map(function ($cancelacion, $key) {
+    		
+    		return $cancelacion->count();
+    	});
+
+
+        $cantidadDeAmbasPorMes = $reservasPorMes->map(function ($reserva, $key) use ($cantidadDeCancelacionesPorMes, $cantidadDeConfirmacionesPorMes){
+            
+            return ['cancelaciones' => $cantidadDeCancelacionesPorMes[$key] ?? 0,
+                    'confirmaciones' =>  $cantidadDeConfirmacionesPorMes[$key] ?? 0];
+        });
+
+   		// CHART DE CONFIRMACIONES Y CANCELACIONES 
+    	$confirmacionesChart = new SampleChart;
+        $confirmacionesChart->labels($cantidadDeAmbasPorMes->keys());
+        $confirmacionesChart->dataset(
+        	'Reservas confirmadas', 
+        	'line',
+        	$cantidadDeAmbasPorMes->pluck('cancelaciones') 
+        )
+        ->color("rgba(22,160,133, 1.0)")
+        ->backgroundcolor("rgba(22,160,133, 0.2)");
+        $confirmacionesChart->dataset(
+        	'Reservas canceladas', 
+        	'line',
+        	$cantidadDeAmbasPorMes->pluck('confirmaciones') 
         )
         ->color("rgba(255, 99, 132, 1.0)")
         ->backgroundcolor("rgba(255, 99, 132, 0.2)");
